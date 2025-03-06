@@ -51,18 +51,16 @@ const petShop = {
     // Ensure previous content is cleared
     medicalRecordList.innerHTML = "";
 
-    // Store the index inside a hidden input field (or globally)
     document
       .getElementById("medicalRecordModal")
       .setAttribute("data-index", index);
 
-    // Check if the pet has medical records
     if (!pet.medicalRecords || pet.medicalRecords.length === 0) {
-      noRecordsMessage.classList.remove("hidden"); // Show message
-      medicalRecordList.classList.add("hidden"); // Hide list
+      noRecordsMessage.classList.remove("hidden");
+      medicalRecordList.classList.add("hidden");
     } else {
-      noRecordsMessage.classList.add("hidden"); // Hide message
-      medicalRecordList.classList.remove("hidden"); // Show list
+      noRecordsMessage.classList.add("hidden");
+      medicalRecordList.classList.remove("hidden");
       medicalRecordList.innerHTML = pet.medicalRecords
         .map((record) => `<li>📝 ${record}</li>`)
         .join("");
