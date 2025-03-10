@@ -1,17 +1,21 @@
 const petShop = {
   pets: [],
   vets: [],
+  products: [],
+  assignments: [],
 
   addPet(name, type, age) {
     this.pets.push({ name, type, age, medicalRecords: [] });
     updatePetsTable();
     updateSelectOptions();
+    updateDropdowns();
   },
 
   addVet(name, specialization) {
     this.vets.push({ name, specialization });
     updateVetsTable();
     updateSelectOptions();
+    updateDropdowns();
   },
 
   assignVetToPet(vetName, petName) {
@@ -79,7 +83,73 @@ const petShop = {
     // Refresh the modal immediately
     this.openMedicalRecordModal(index);
   },
+
+  addProduct(name, type) {
+    this.products.push({ name, type });
+    updateProductDropdown();
+  },
+
+  assignProductToPet(petName, productName, vetName) {
+    const pet = this.pets.find((p) => p.name === petName);
+    const vet = this.vets.find((v) => v.name === vetName);
+    const product = this.products.find((p) => p.name === productName);
+
+    if (pet && vet && product) {
+      document.getElementById("assignedProductList").innerHTML += `
+        <li class="bg-yellow-100 text-center py-2.5 font-semibold">${vet.name} gived ${product.name} (${product.type}) to ${pet.name}</li>
+      `;
+    }
+  },
 };
+
+function addProduct() {
+  const name = document.getElementById("productName").value.trim();
+  const type = document.getElementById("productType").value;
+
+  if (!name) {
+    alert("Please enter a product name.");
+    return;
+  }
+
+  petShop.addProduct(name, type);
+  document.getElementById("productName").value = "";
+}
+
+function assignProductToPet() {
+  const petName = document.getElementById("assignProductPet").value;
+  const productName = document.getElementById("assignProduct").value;
+  const vetName = document.getElementById("assignVetProduct").value;
+
+  if (!petName || !productName || !vetName) {
+    alert("Please select a pet, product, and vet.");
+    return;
+  }
+
+  petShop.assignProductToPet(petName, productName, vetName);
+}
+
+function updateProductDropdown() {
+  document.getElementById("assignProduct").innerHTML = petShop.products
+    .map((p) => `<option>${p.name}</option>`)
+    .join("");
+}
+
+function updateDropdowns() {
+  // Update pets dropdown for "Assign Product"
+  document.getElementById("assignProductPet").innerHTML = petShop.pets
+    .map((p) => `<option value="${p.name}">${p.name}</option>`)
+    .join("");
+
+  // Update vets dropdown for "Assign Product"
+  document.getElementById("assignVetProduct").innerHTML = petShop.vets
+    .map((v) => `<option value="${v.name}">${v.name}</option>`)
+    .join("");
+
+  // Update products dropdown for "Assign Product" (in case new products are added)
+  document.getElementById("assignProduct").innerHTML = petShop.products
+    .map((p) => `<option value="${p.name}">${p.name}</option>`)
+    .join("");
+}
 
 function closeMedicalRecordModal() {
   document.getElementById("medicalRecordModal").style.display = "none";
@@ -114,10 +184,6 @@ function confirmAddMedicalRecord(index) {
 
   // Refresh modal to reflect changes
   petShop.openMedicalRecordModal(index);
-}
-
-function cancelAddMedicalRecord() {
-  document.getElementById("addRecordSection").innerHTML = "";
 }
 
 function cancelAddMedicalRecord() {

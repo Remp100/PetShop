@@ -14,7 +14,9 @@
 
       <!-- Add Pet Form -->
       <section class="mt-5 p-5 border rounded bg-white flex flex-col gap-2.5">
-        <h2 class="text-md font-semibold">Add a Pet</h2>
+        <h2 class="text-md font-semibold text-indigo-700 text-center">
+          Add a Pet
+        </h2>
 
         <input
           type="text"
@@ -35,13 +37,19 @@
           class="p-2 border rounded w-full"
         />
 
-        <button class="bg-zinc-100 rounded py-2.5" onclick="addPet()">
+        <button
+          class="bg-zinc-100 rounded py-2.5 font-semibold"
+          onclick="addPet()"
+        >
           🐶 Add Pet
         </button>
       </section>
 
       <!-- Search Pets -->
       <section class="mt-5 p-5 border rounded bg-white">
+        <h2 class="text-md font-semibold text-indigo-700 text-center mb-3">
+          Search a Pet
+        </h2>
         <input
           type="text"
           id="searchPets"
@@ -53,7 +61,9 @@
 
       <!-- Pet list -->
       <section class="mt-5 p-5 border rounded bg-white flex flex-col gap-2.5">
-        <h2 class="text-md font-semibold">Pet List</h2>
+        <h2 class="text-md font-semibold text-indigo-700 text-center">
+          Pet List
+        </h2>
         <table>
           <thead>
             <tr class="bg-zinc-100 text-left">
@@ -75,7 +85,9 @@
 
       <!-- Add Vet Form -->
       <section class="mt-5 p-5 border rounded bg-white flex flex-col gap-2.5">
-        <h2 class="text-md font-semibold">Add a Vet</h2>
+        <h2 class="text-md font-semibold text-indigo-700 text-center">
+          Add a Vet
+        </h2>
         <input
           type="text"
           id="vetName"
@@ -88,13 +100,19 @@
           placeholder="Vet Specialization"
           class="p-2 border rounded w-full"
         />
-        <button class="bg-zinc-100 rounded py-2.5" id="addVetButton">
+        <button
+          class="bg-zinc-100 rounded py-2.5 font-semibold"
+          id="addVetButton"
+        >
           👨‍⚕️ Add Vet
         </button>
       </section>
 
       <!-- Search Vets -->
       <section class="mt-5 p-5 border rounded bg-white">
+        <h2 class="text-md font-semibold text-indigo-700 text-center mb-3">
+          Search a Vet
+        </h2>
         <input
           type="text"
           id="searchVets"
@@ -106,7 +124,9 @@
 
       <!-- Vet list -->
       <section class="mt-5 p-5 border rounded bg-white flex flex-col gap-2.5">
-        <h2 class="text-md font-semibold">Vet List</h2>
+        <h2 class="text-md font-semibold text-indigo-700 text-center">
+          Vet List
+        </h2>
         <table>
           <thead>
             <tr class="bg-zinc-100 text-left">
@@ -127,17 +147,75 @@
 
       <!-- Assign vet to pet -->
       <section class="mt-5 p-5 border rounded bg-white flex flex-col gap-2.5">
-        <h2 class="text-md font-semibold">Assign Vet to Pet</h2>
+        <h2 class="text-md font-semibold text-indigo-700 text-center">
+          Assign Vet to Pet
+        </h2>
         <select class="p-2 border rounded w-full" id="assignPet"></select>
         <select class="p-2 border rounded w-full" id="assignVet"></select>
-        <button class="bg-zinc-100 rounded py-2.5" onclick="assignVetToPet()">
+        <button
+          class="bg-zinc-100 rounded py-2.5 font-semibold"
+          onclick="assignVetToPet()"
+        >
           Assign
         </button>
       </section>
 
       <section class="mt-5 p-5 border rounded bg-white flex flex-col gap-2.5">
-        <h2 class="text-md font-semibold">Assigned Vets</h2>
+        <h2 class="text-md font-semibold text-indigo-700 text-center">
+          Assigned Vets
+        </h2>
         <ul id="assignmentList" class="list-disc pl-5 text-zinc-700"></ul>
+      </section>
+      <section class="mt-5 p-5 border rounded bg-white flex flex-col gap-2.5">
+        <h2 class="text-md font-semibold text-indigo-700 text-center">
+          🍽️ Add a Food/Medicine
+        </h2>
+        <input
+          type="text"
+          id="productName"
+          placeholder="Product Name"
+          class="p-2 border rounded w-full"
+        />
+        <select id="productType" class="p-2 border rounded w-full">
+          <option value="Food">Food</option>
+          <option value="Medicine">Medicine</option>
+        </select>
+        <button
+          class="bg-zinc-100 rounded py-2.5 font-semibold"
+          onclick="addProduct()"
+        >
+          Add Product
+        </button>
+      </section>
+
+      <!-- Assign Food/Medicine to Pet -->
+      <section class="mt-5 p-5 border rounded bg-white flex flex-col gap-2.5">
+        <h2 class="text-md font-semibold text-indigo-700 text-center">
+          🩺 Assign Food/Medicine to Pet
+        </h2>
+        <select
+          class="p-2 border rounded w-full"
+          id="assignProductPet"
+        ></select>
+        <select class="p-2 border rounded w-full" id="assignProduct"></select>
+        <select
+          class="p-2 border rounded w-full"
+          id="assignVetProduct"
+        ></select>
+        <button
+          class="bg-zinc-100 rounded py-2.5 font-semibold"
+          onclick="assignProductToPet()"
+        >
+          Assign
+        </button>
+      </section>
+
+      <!-- List of Assigned Products -->
+      <section class="mt-5 p-5 border rounded bg-white flex flex-col gap-2.5">
+        <h2 class="text-md font-semibold text-indigo-700 text-center">
+          📋 Assigned Products
+        </h2>
+        <ul id="assignedProductList" class="list-disc pl-5 text-zinc-700"></ul>
       </section>
     </main>
 
